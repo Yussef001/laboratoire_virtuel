@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratoire Virtuel - Plateforme</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🔬Bienvenue au Laboratoire Virtuel</h1>
+    <p>Choisissez une expérience ci-dessous</p>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-target="gel">🧬 Électrophorèse</button>
+    <button class="tab-btn" data-target="epi">🥼 Simulateur EPI</button>
+  </div>
+
+  <!-- Expérience 1 -->
+  <div id="gel" class="experiment active">
+    <div class="container">
+      <h1>🧬 Électrophorèse sur Gel d'Agarose</h1>
+      <div class="gel-container">
+        <div class="gel-background" id="gel-area">
+          <div class="electrodes">
+            <div class="electrode negative"></div>
+            <div class="electrode positive"></div>
+          </div>
+          <div class="wells" id="wells-container">
+            <div class="well"></div>
+            <div class="well"></div>
+            <div class="well"></div>
+            <div class="well"></div>
+            <div class="well"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="control-group">
+          <button id="start-btn">▶️ Démarrer</button>
+          <button id="pause-btn" disabled>⏸️ Pause</button>
+          <button id="reset-btn">🔄 Reset</button>
+        </div>
+        
+        <div class="control-group">
+          <label>Voltage:</label>
+          <input type="range" id="voltage-slider" min="50" max="200" value="120">
+          <div class="voltage-display" id="voltage-display">120V</div>
+        </div>
+      </div>
+
+      <div class="info-panel">
+        <div class="info-box">
+          <h3>⚡ État de la Migration</h3>
+          <div class="time-display" id="time-display">00:00</div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <p id="status-text">Prêt à commencer</p>
+        </div>
+
+        <div class="info-box">
+          <h3>📊 Fragments d'ADN</h3>
+          <div class="legend">
+            <div class="legend-item">
+              <div class="legend-color" style="background: #ff6b6b;"></div>
+              <span>10000 pb</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #4ecdc4;"></div>
+              <span>5000 pb</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #45b7d1;"></div>
+              <span>2000 pb</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #96ceb4;"></div>
+              <span>1000 pb</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #ffd93d;"></div>
+              <span>500 pb</span>
+            </div>
+          </div>
+          <p><strong>Principe :</strong> Les fragments plus petits migrent plus vite vers l'électrode positive.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Expérience 2 -->
+  <div id="epi" class="experiment">
+    <div class="container">
+      <div class="header-epi">
+        <h1>🥼 Simulateur EPI - Laboratoire de Biosécurité</h1>
+        <p>Cliquez sur les équipements pour habiller le mannequin selon le niveau de sécurité requis</p>
+      </div>
+      
+      <div class="main-content">
+        <div class="epi-selection">
+          <div class="level-section">
+            <div class="level-title">🟢 Niveau BSL-1 (Basique)</div>
+            <div class="epi-item" data-epi="gants">
+              <div class="epi-icon">🧤</div>
+              <div><strong>Gants</strong><br><small>Protection des mains</small></div>
+            </div>
+            <div class="epi-item" data-epi="blouse">
+              <div class="epi-icon">🥼</div>
+              <div><strong>Blouse</strong><br><small>Protection du corps</small></div>
+            </div>
+          </div>
+
+          <div class="level-section">
+            <div class="level-title">🟡 Niveau BSL-2 (Modéré)</div>
+            <div class="epi-item" data-epi="lunettes">
+              <div class="epi-icon">🥽</div>
+              <div><strong>Lunettes</strong><br><small>Protection des yeux</small></div>
+            </div>
+            <div class="epi-item" data-epi="masque">
+              <div class="epi-icon">😷</div>
+              <div><strong>Masque</strong><br><small>Protection respiratoire</small></div>
+            </div>
+            <div class="epi-item" data-epi="chaussures">
+              <div class="epi-icon">👟</div>
+              <div><strong>Chaussures</strong><br><small>Protection des pieds</small></div>
+            </div>
+          </div>
+
+          <div class="level-section">
+            <div class="level-title">🔴 Niveau BSL-3/4 (Élevé)</div>
+            <div class="epi-item" data-epi="charlotte">
+              <div class="epi-icon">🧢</div>
+              <div><strong>Charlotte</strong><br><small>Protection des cheveux</small></div>
+            </div>
+            <div class="epi-item" data-epi="combinaison">
+              <div class="epi-icon">🦺</div>
+              <div><strong>Combinaison</strong><br><small>Protection complète</small></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mannequin-area">
+          <div class="stats-panel">
+            <div class="protection-level">Niveau: <span id="current-level">0</span>%</div>
+            <div class="level-indicator"><div class="level-fill" id="level-fill" style="width: 0%"></div></div>
+            <div id="active-epi">Aucun EPI sélectionné</div>
+            <button class="reset-btn" onclick="resetAll()">🔄 Tout enlever</button>
+          </div>
+
+          <div class="mannequin-container">
+            <div class="hair"></div>
+            <div class="head"><div class="face-features"><div class="eyes eye-left"></div><div class="eyes eye-right"></div><div class="mouth"></div></div></div>
+            <div class="neck"></div>
+            <div class="torso"><div class="pocket pocket-left"></div><div class="pocket pocket-right"></div></div>
+            <div class="tie"></div><div class="badge"></div>
+            <div class="arm arm-left"><div class="arm-upper"></div><div class="arm-lower"></div></div>
+            <div class="arm arm-right"><div class="arm-upper"></div><div class="arm-lower"></div></div>
+            <div class="leg leg-left"><div class="leg-upper"></div><div class="leg-lower"></div></div>
+            <div class="leg leg-right"><div class="leg-upper"></div><div class="leg-lower"></div></div>
+            <div class="base-shoes base-shoe-left"></div><div class="base-shoes base-shoe-right"></div>
+            <div class="epi-item-on-mannequin gants left" id="gants-left"></div>
+            <div class="epi-item-on-mannequin gants right" id="gants-right"></div>
+            <div class="epi-item-on-mannequin blouse" id="blouse-item"></div>
+            <div class="epi-item-on-mannequin masque" id="masque-item"></div>
+            <div class="epi-item-on-mannequin lunettes" id="lunettes-item"></div>
+            <div class="epi-item-on-mannequin charlotte" id="charlotte-item"></div>
+            <div class="epi-item-on-mannequin chaussures left" id="chaussures-left"></div>
+            <div class="epi-item-on-mannequin chaussures right" id="chaussures-right"></div>
+            <div class="epi-item-on-mannequin combinaison" id="combinaison-item"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,778 @@
+/* --- Style global et navigation --- */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  min-height: 100vh;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0,0,0,0.3);
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.tab-btn {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+  background: #ff6b6b;
+  box-shadow: 0 4px 15px rgba(255,255,255,0.4);
+}
+
+.experiment {
+  display: none;
+  padding: 20px;
+}
+
+.experiment.active {
+  display: block;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+
+/* --- Styles Électrophorèse --- */
+.gel-container {
+  background: #2a2a2a;
+  border: 3px solid #444;
+  border-radius: 10px;
+  width: 800px;
+  height: 400px;
+  margin: 20px auto;
+  position: relative;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+}
+
+.gel-background {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, 
+      rgba(100, 100, 100, 0.2) 0%,
+      rgba(80, 80, 80, 0.3) 50%,
+      rgba(60, 60, 60, 0.4) 100%);
+  border-radius: 7px;
+  position: relative;
+  overflow: hidden;
+}
+
+.wells {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+}
+
+.well {
+  width: 30px;
+  height: 40px;
+  background: #1a1a1a;
+  border: 2px solid #555;
+  border-radius: 5px;
+  position: relative;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.8);
+}
+
+.dna-fragment {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.9;
+  z-index: 10;
+  width: 15px;
+  height: 15px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.control-group {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+}
+
+button {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(238, 90, 36, 0.4);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(238, 90, 36, 0.6);
+}
+
+button:disabled {
+  background: #666;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.info-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.info-box {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+}
+
+.info-box h3 {
+  margin: 0 0 15px 0;
+  color: #ffd700;
+}
+
+.voltage-display {
+  font-size: 2em;
+  font-weight: bold;
+  color: #00ff88;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.time-display {
+  font-size: 1.5em;
+  color: #88ddff;
+  text-align: center;
+}
+
+.electrodes {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.electrode {
+  position: absolute;
+  width: 6px;
+  height: 80%;
+  top: 10%;
+  border-radius: 3px;
+}
+
+.electrode.negative {
+  left: 10px;
+  background: linear-gradient(180deg, #3333ff, #0000aa);
+  box-shadow: 0 0 10px #3333ff;
+}
+
+.electrode.positive {
+  right: 10px;
+  background: linear-gradient(180deg, #ff3333, #aa0000);
+  box-shadow: 0 0 10px #ff3333;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00ff88, #0099ff);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.legend {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.1);
+  padding: 10px 15px;
+  border-radius: 20px;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px currentColor;
+}
+
+
+/* --- Styles Simulateur EPI --- */
+.header-epi {
+  background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.main-content {
+  display: flex;
+  min-height: 600px;
+}
+
+.epi-selection {
+  width: 350px;
+  background: #f8f9fa;
+  padding: 20px;
+  border-right: 2px solid #e9ecef;
+  overflow-y: auto;
+  color: black;
+}
+
+.level-section { margin-bottom: 30px; }
+
+.level-title {
+  background: #495057;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.epi-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  margin: 8px 0;
+  background: white;
+  border: 2px solid #dee2e6;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.epi-item:hover {
+  border-color: #007bff;
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0,123,255,0.2);
+}
+
+.epi-item.selected {
+  border-color: #28a745;
+  background: #d4edda;
+}
+
+.epi-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 12px;
+  background: #6c757d;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+}
+
+.mannequin-area {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  position: relative;
+  padding: 40px;
+  border-radius: 15px;
+}
+
+
+.mannequin-container {
+            position: relative;
+            width: 180px;
+            height: 480px;
+            margin: 0 auto;
+        }
+
+        /* Tête */
+        .head {
+            width: 70px;
+            height: 80px;
+            background: #F4C2A1;
+            border-radius: 35px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        /* Cheveux */
+        .hair {
+            width: 75px;
+            height: 50px;
+            background: #8B4513;
+            border-radius: 40px 40px 20px 20px;
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9;
+        }
+
+        /* Visage */
+        .face-features {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 11;
+        }
+
+        .eyes {
+            width: 4px;
+            height: 4px;
+            background: #333;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+        }
+
+        .eye-left { left: -8px; }
+        .eye-right { right: -8px; }
+
+        .mouth {
+            width: 15px;
+            height: 2px;
+            background: #333;
+            border-radius: 2px;
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Cou */
+        .neck {
+            width: 25px;
+            height: 15px;
+            background: #F4C2A1;
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 8;
+        }
+
+        /* Torse */
+        .torso {
+            width: 120px;
+            height: 180px;
+            background: white;
+            position: absolute;
+            top: 95px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 8px;
+            z-index: 5;
+        }
+
+        /* Cravate */
+        .tie {
+            width: 15px;
+            height: 80px;
+            background: #4A90E2;
+            position: absolute;
+            top: 95px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 6;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 50% 100%, 0% 85%);
+        }
+
+        /* Badge */
+        .badge {
+            width: 20px;
+            height: 25px;
+            background: #E8E8E8;
+            border: 1px solid #333;
+            position: absolute;
+            top: 120px;
+            right: 20px;
+            z-index: 7;
+            border-radius: 3px;
+        }
+
+        .badge::after {
+            content: "";
+            width: 8px;
+            height: 2px;
+            background: #333;
+            position: absolute;
+            top: 8px;
+            left: 6px;
+        }
+
+        /* Poches blouse */
+        .pocket {
+            width: 35px;
+            height: 25px;
+            background: rgba(200, 200, 200, 0.3);
+            border: 1px solid #ddd;
+            position: absolute;
+            top: 220px;
+            border-radius: 3px;
+        }
+
+        .pocket-left { left: 20px; }
+        .pocket-right { right: 20px; }
+
+        /* Bras */
+        .arm {
+            width: 35px;
+            height: 140px;
+            position: absolute;
+            top: 110px;
+        }
+
+        .arm-upper {
+            width: 35px;
+            height: 80px;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .arm-lower {
+            width: 28px;
+            height: 60px;
+            background: #F4C2A1;
+            border-radius: 14px;
+            position: absolute;
+            top: 75px;
+            left: 4px;
+        }
+
+        .arm-left {
+            left: -25px;
+        }
+
+        .arm-right {
+            right: -25px;
+        }
+
+        /* Jambes */
+        .leg {
+            width: 45px;
+            height: 180px;
+            position: absolute;
+            top: 275px;
+        }
+
+        .leg-upper {
+            width: 45px;
+            height: 100px;
+            background: #8B4513;
+            border-radius: 8px;
+        }
+
+        .leg-lower {
+            width: 40px;
+            height: 80px;
+            background: #8B4513;
+            position: absolute;
+            top: 95px;
+            left: 2px;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .leg-left {
+            left: 30px;
+        }
+
+        .leg-right {
+            right: 30px;
+        }
+
+        /* Chaussures de base */
+        .base-shoes {
+            width: 50px;
+            height: 20px;
+            background: #654321;
+            border-radius: 25px 25px 5px 5px;
+            position: absolute;
+            top: 450px;
+        }
+
+        .base-shoe-left {
+            left: 25px;
+        }
+
+        .base-shoe-right {
+            right: 25px;
+        }
+
+        /* EPI Styles */
+        .epi-item-on-mannequin {
+            position: absolute;
+            display: none;
+        }
+
+        .epi-item-on-mannequin.active {
+            display: block;
+        }
+
+        .gants {
+            width: 30px;
+            height: 35px;
+            background: #28a745;
+            border-radius: 15px;
+            top: 185px;
+            border: 2px solid #1e7e34;
+        }
+
+        .gants.left {
+            left: -15px;
+        }
+
+        .gants.right {
+            right: -15px;
+        }
+
+        .blouse {
+            width: 140px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 3px solid #007bff;
+            border-radius: 8px;
+            top: 95px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4;
+        }
+
+        .blouse::before {
+            content: "";
+            width: 30px;
+            height: 20px;
+            background: rgba(200, 200, 200, 0.5);
+            border: 1px solid #ddd;
+            position: absolute;
+            bottom: 40px;
+            left: 15px;
+            border-radius: 3px;
+        }
+
+        .blouse::after {
+            content: "";
+            width: 30px;
+            height: 20px;
+            background: rgba(200, 200, 200, 0.5);
+            border: 1px solid #ddd;
+            position: absolute;
+            bottom: 40px;
+            right: 15px;
+            border-radius: 3px;
+        }
+
+        .masque {
+            width: 45px;
+            height: 25px;
+            background: #fff;
+            border-radius: 12px;
+            top: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 2px solid #e0e0e0;
+            z-index: 12;
+        }
+
+        .masque::before {
+            content: "";
+            width: 35px;
+            height: 15px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            position: absolute;
+            top: 5px;
+            left: 5px;
+        }
+
+        .lunettes {
+            width: 55px;
+            height: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 8px;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 2px solid #333;
+            z-index: 13;
+        }
+
+        .lunettes::before {
+            content: "";
+            width: 20px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 5px;
+        }
+
+        .lunettes::after {
+            content: "";
+            width: 20px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            right: 5px;
+        }
+
+        .charlotte {
+            width: 85px;
+            height: 40px;
+            background: #17a2b8;
+            border-radius: 50%;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 2px solid #138496;
+            z-index: 8;
+        }
+
+        .chaussures {
+            width: 55px;
+            height: 25px;
+            background: #6f42c1;
+            border-radius: 15px 15px 5px 5px;
+            top: 445px;
+            border: 2px solid #5a32a3;
+        }
+
+        .chaussures.left {
+            left: 20px;
+        }
+
+        .chaussures.right {
+            right: 20px;
+        }
+
+        .combinaison {
+            width: 160px;
+            height: 300px;
+            background: rgba(255, 215, 0, 0.9);
+            border: 3px solid #ffc107;
+            border-radius: 15px;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
+
+        .combinaison::before {
+            content: "";
+            width: 30px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.3);
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+        }
+
+        .stats-panel {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            min-width: 200px;
+        }
+
+        .protection-level {
+            font-size: 24px;
+            font-weight: bold;
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+
+        .level-indicator {
+            width: 100%;
+            height: 20px;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .level-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #dc3545, #ffc107, #28a745);
+            transition: width 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .reset-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .reset-btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
